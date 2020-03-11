@@ -8,28 +8,12 @@ let todoRoutes = require('./routes/todos')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended:true}))
 
-// app.listen // to listen to server
-// app.get // to define a route
+app.use(express.static(__dirname + '/views')) // so that views index.html file can be found.
+app.use(express.static(__dirname + '/public')) // This works wherever location is
 
 app.get('/', function(req,res){
-    res.send("Hello from ROOT route")
+    res.sendFile("index.html")
 })
 
-app.get('/json', function(req,res){
-    res.json({message: "this is json"}) // content type: json
-})
-
-app.get('/string', function(req,res){
-    res.send("{message: 'this is html'}") // content type: text/html; charset=utf-8
-    // calls res.json first
-    // send is like a parent
-    // json.stringify then respond through json
-})
-
-
-app.get('/happy', function(req,res){
-    res.send(":D")
-})
-
-app.use('/api/todos', todoRoutes) // all routes defined in todoRoutes comes after /api/todos#
+app.use('/api/todos', todoRoutes)
 app.listen(3000, () => {console.log("=======================Server Is Listening!=======================")})

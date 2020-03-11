@@ -1,4 +1,5 @@
 let mongoose = require('mongoose')
+
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 mongoose.set('useCreateIndex', true);
@@ -24,7 +25,4 @@ let todoSchema = new mongoose.Schema({
 let Todo = mongoose.model('Todo', todoSchema)
 
 
-module.exports = Todo // Now it is accessible in index.js
-// name (string)
-// completed (bool)
-// created (date)
+module.exports = Todo
